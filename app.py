@@ -1,7 +1,7 @@
-from statistics import statistics_bp
 from auth import auth_bp
 from books import books_bp
 from borrows import borrows_bp
+from statistics import statistics_bp
 from flask import Flask, jsonify
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -15,7 +15,7 @@ app.secret_key = '123456'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@192.168.200.128:3306/Library_full'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# 配置JWT密钥
+# 配置JWT密钥 可改环境变量读
 app.config['JWT_SECRET_KEY'] = '123456'
 
 # 初始化扩展

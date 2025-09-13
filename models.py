@@ -27,11 +27,12 @@ class User(db.Model, TimestampMixin):
         # 密码更新时间
         db.DateTime, default=datetime.now(), nullable=False)
     privilege = db.Column(db.Integer, nullable=False,
-                          default=0)  # 权限等级(0:普通用户, 1:管理员)
-    status = db.Column(db.Integer, nullable=False, default=0)  # 状态(0:正常,1:禁用)
+                          default=0)  # 权限等级(0:普通用户, 1:管理员) 可改枚举
+    status = db.Column(db.Integer, nullable=False,
+                       default=0)  # 状态(0:正常,1:禁用) 可改枚举
     # 个人信息部分
     name = db.Column(db.String(16), nullable=False)  # 姓名
-    sex = db.Column(db.Integer, nullable=False)  # 性别(0:男,1:女,2:未知)
+    sex = db.Column(db.Integer, nullable=False)  # 性别(0:男,1:女,2:未知) 可改枚举
     age = db.Column(db.Integer)  # 年龄
     introduction = db.Column(db.String(200))  # 简介
 
@@ -94,7 +95,7 @@ class Borrow(db.Model, TimestampMixin):
     book = db.relationship('Book', backref=db.backref('borrows', lazy=True))
     # 状态字段
     status = db.Column(db.Integer, nullable=False,
-                       default=0)  # 状态(0:借阅中, 1:已归还)
+                       default=0)  # 状态(0:借阅中, 1:已归还) 可改枚举
     # 索引
     __table_args__ = (
         db.Index('idx_borrow_user_id', 'user_id'),
